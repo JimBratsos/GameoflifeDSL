@@ -1,0 +1,10 @@
+GameStart{
+	
+	Draw Cell (0,0)
+	Draw Many (1 to 2) : (2 to 3)
+	
+	StayAliveRule surrounding < 2 and surrounding < 3 // Overlapping rules for < 2 and < 3
+	DieRule surrounding < 2 or surrounding > 3
+	BirthRule surrounding = 3
+
+}

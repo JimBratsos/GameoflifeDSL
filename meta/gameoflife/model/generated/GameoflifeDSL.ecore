@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="gameoflifeDSL" nsURI="http://www.GameoflifeDSL.gameoflife" nsPrefix="gameoflifeDSL">
+  <eClassifiers xsi:type="ecore:EClass" name="GameStart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialGrid" eType="#//InitialGrid"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evolutionRules" upperBound="-1"
+        eType="#//EvolutionRules" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialGrid">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cells" upperBound="-1"
+        eType="#//CellStatus" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lines" upperBound="-1"
+        eType="#//LineStatus" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineStatus">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coordinates" eType="#//LineCoords"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineCoords">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xbeg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xend" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ybeg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yend" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CellStatus">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coordinates" eType="#//Coordinates"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Coordinates">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EvolutionRules">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="liveRules" upperBound="-1"
+        eType="#//LiveRules" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deadRules" upperBound="-1"
+        eType="#//DieRules" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="becomeAliveRules" upperBound="-1"
+        eType="#//BecomeAliveRules" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiveRules">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="surroundingCheck" eType="#//SurroundingCheck"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DieRules">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="surroundingCheck" eType="#//SurroundingCheck"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BecomeAliveRules">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="surroundingCheck" eType="#//SurroundingCheck"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SurroundingCheck">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checks" eType="#//Check"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extracheck" upperBound="-1"
+        eType="#//ExtraCheck" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Check">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="compare" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="integer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtraCheck">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="check" eType="#//Check"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

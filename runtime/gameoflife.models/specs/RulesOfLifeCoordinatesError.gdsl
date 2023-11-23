@@ -1,0 +1,10 @@
+GameStart{
+	
+	Draw Cell (0,0)
+	Draw Many (2 to 1) : (3 to 2) // 2 is bigger than 1; try swapping, as it will not draw anything
+	
+	StayAliveRule surrounding = 2 and surrounding = 3
+	DieRule surrounding < 2 or surrounding > 3
+	BirthRule surrounding = 3
+
+}

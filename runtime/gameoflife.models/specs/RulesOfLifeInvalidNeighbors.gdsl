@@ -1,0 +1,10 @@
+GameStart{
+	
+	Draw Cell (0,0)
+	Draw Many (1 to 2) : (2 to 3)
+	
+	StayAliveRule surrounding = 8 and surrounding = 9 // if it is equal to 8 do not produce an error though
+	DieRule surrounding < 2 or surrounding > 8 // If it is more than 8 then produce an error
+	BirthRule surrounding = 3
+
+}

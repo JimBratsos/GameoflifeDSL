@@ -1,0 +1,62 @@
+grammar gameoflife.GameoflifeDSL with org.eclipse.xtext.common.Terminals
+
+generate gameoflifeDSL "http://www.GameoflifeDSL.gameoflife"
+
+GameStart: 'GameStart' '{'
+	initialGrid = InitialGrid // Specify the Initial Grid
+	evolutionRules += EvolutionRules // Specify the Evolution Rules
+'}';
+
+InitialGrid:{InitialGrid} 
+	('Draw' cells+=CellStatus)* // List of zero to more CellStatus. Added {InitialGrid} to ensure proper object creation
+	('Draw' lines+=LineStatus)* // List of zero to more LineStatus
+;
+
+LineStatus:
+	coordinates=LineCoords
+;
+
+LineCoords:
+	'Many' '(' xbeg=INT 'to' xend=INT ')' ':' '(' ybeg = INT 'to' yend=INT')'
+;
+
+CellStatus:
+    'Cell' coordinates=Coordinates
+;
+
+Coordinates:
+    '(' x=INT ',' y=INT ')'; // (x,y) with x,y int
+
+
+EvolutionRules:
+        {EvolutionRules} liveRules+=LiveRules*
+        deadRules+=DieRules*
+        becomeAliveRules+=BecomeAliveRules*
+;
+
+LiveRules:
+    'StayAliveRule' surroundingCheck=SurroundingCheck;
+
+DieRules:
+    'DieRule' surroundingCheck=SurroundingCheck;
+
+BecomeAliveRules:
+    'BirthRule' surroundingCheck=SurroundingCheck;
+    
+SurroundingCheck:
+    checks=Check (extracheck+=ExtraCheck)*;
+  
+Check:
+    'surrounding' compare=Comparison integer=INT;  
+    
+ExtraCheck:
+	operator=Operators check=Check
+;
+
+Comparison:
+    '<' | '=' | '>';
+
+Operators:
+    'and' | 'or';
+
+
